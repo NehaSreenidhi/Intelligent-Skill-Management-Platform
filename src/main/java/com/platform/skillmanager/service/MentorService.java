@@ -18,14 +18,6 @@ public class MentorService {
     @Autowired
     private InternRepository internRepository;
 
-    // Auth
-    public Mentor login(String email, String password){
-        Mentor mentor = mentorRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Mentor not found."));
-        if(!mentor.getPassword().equals(password)){
-            throw new RuntimeException("Invalid credentials.");
-        }
-        return mentor;
-    }
     // Dashboard
     public List<Intern> getAllInterns(){
         return internRepository.findAll();

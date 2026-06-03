@@ -1,11 +1,14 @@
 package com.platform.skillmanager.service;
 
+import com.platform.skillmanager.dto.JwtResponse;
 import com.platform.skillmanager.dto.LoginRequest;
+import com.platform.skillmanager.jwt.JwtUtil;
 import com.platform.skillmanager.model.Intern;
 import com.platform.skillmanager.model.Mentor;
 import com.platform.skillmanager.repository.InternRepository;
 import com.platform.skillmanager.repository.MentorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,14 +19,21 @@ public class AuthService {
     @Autowired
     private MentorRepository mentorRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
     public Object login(LoginRequest request){
         if(request.getUserType().equalsIgnoreCase("Intern")){
             Intern intern = internRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new RuntimeException("Intern not found"));
-            if(!intern.getPassword().equals(request.getPassword())) {
+            if(!passwordEncoder.matches(request.getPassword(), intern.getPassword())) {
                 throw new RuntimeException("Invalid credentials.");
             }
-            return intern;
+            String token = jwtUtil.generateToken(intern.getEmail());
+            return new JwtResponse(token);
         }
 
         else if(request.getUserType().equalsIgnoreCase("Mentor")){
@@ -32,7 +42,9 @@ public class AuthService {
             if(!mentor.getPassword().equals(request.getPassword())){
                 throw new RuntimeException("Invalid credentials.");
             }
-            return mentor;
+            return new JwtResponse(
+                    jwtUtil.generateToken(mentor.getEmail())
+            );
         }
         throw new RuntimeException("Invalid user type");
     }

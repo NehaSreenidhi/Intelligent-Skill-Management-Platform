@@ -8,6 +8,7 @@ import com.platform.skillmanager.model.Skill;
 import com.platform.skillmanager.model.SkillLevel;
 import com.platform.skillmanager.repository.InternRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,12 +18,15 @@ public class InternService {
     @Autowired
     private InternRepository internRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Intern registerIntern(Intern intern) {
 
         if (internRepository.existsByEmail(intern.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
-
+        intern.setPassword(passwordEncoder.encode(intern.getPassword()));
         return internRepository.save(intern);
     }
 
