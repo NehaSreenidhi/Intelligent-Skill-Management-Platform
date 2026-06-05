@@ -26,4 +26,14 @@ public class MentorService {
         return internRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Intern not found."));
     }
 
+    public List<Intern> searchInterns(String query) {
+        List<Intern> interns = internRepository.findAll();
+
+        // temporary
+        return interns.stream()
+                .filter(intern ->
+                        intern.getName().toLowerCase()
+                                .contains(query.toLowerCase()))
+                .toList();
+    }
 }
