@@ -1,6 +1,7 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
+#Backend
+skillmanager/HELP.md
+skillmanager/target/
+skillmanager/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -35,3 +36,8 @@ build/
 .vscode/
 
 application.properties
+
+# Angular
+skillmanager-ui/node_modules/
+skillmanager-ui/.angular/
+skillmanager-ui/dist/
