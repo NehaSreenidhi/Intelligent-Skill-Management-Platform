@@ -26,6 +26,8 @@ public class AuthService {
     private JwtUtil jwtUtil;
 
     public Object login(LoginRequest request){
+        System.out.println("User Type = " + request.getUserType());
+        System.out.println("Email = " + request.getEmail());
         if(request.getUserType().equalsIgnoreCase("Intern")){
             Intern intern = internRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new RuntimeException("Intern not found"));

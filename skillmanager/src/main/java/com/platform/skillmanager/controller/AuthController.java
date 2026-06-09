@@ -18,6 +18,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public Object login(@RequestBody LoginRequest request){
+        System.out.println("==========LOGIN API HIT==========");
         return authService.login(request);
     }
 }
