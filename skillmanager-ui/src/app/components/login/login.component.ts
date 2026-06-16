@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -18,14 +19,15 @@ export class LoginComponent {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(4)])
+    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    userType: new FormControl('Intern')
   });
 
   onLogin(){
     const loginData = {
       email : this.loginForm.value.email,
       password: this.loginForm.value.password,
-      userType: 'Intern'
+      userType: this.loginForm.value.userType
     };
     console.log(loginData);
 
@@ -33,9 +35,19 @@ export class LoginComponent {
       .subscribe({
         next: (response : any) => {
           localStorage.setItem("token", response.token);
+          localStorage.setItem(
+            "userType",
+            loginData.userType || "Intern"
+          );
           console.log('Login Success');
           console.log(response);
-          this.router.navigate(['/dashboard']);
+          if(loginData.userType === 'Mentor')
+          {
+              this.router.navigate(['/mentor-dashboard']);
+          }
+          else{
+            this.router.navigate(['/dashboard']);
+          }
         },
         error: (error) => {
           console.log('Login Failed');

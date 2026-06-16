@@ -1,18 +1,48 @@
 <h2> Login </h2>
+<div class="login-container">
+    <div class="gradient-border">
+        <div class="login-card">
+            <form 
+                [formGroup] = "loginForm"
+                (ngSubmit)="onLogin()" >
+                <div>
+                    <label>Email</label>
+                    <input type="email" formControlName="email">
+                </div>
+                <br>
+                <div>
+                    <label>Password</label>
+                    <input type="password" formControlName="password">
+                </div>
+                <br>
+                <button type="submit">Login</button>
+                <div class="mb-3">
 
-<form 
-    [formGroup] = "loginForm"
-    (ngSubmit)="onLogin()" >
-    <div>
-        <label>Email</label>
-        <input type="email" formControlName="email">
+                <label class="form-label">
+                    Select User Type
+                </label>
+
+                <div>
+                    <input
+                    type="radio"
+                    formControlName="userType"
+                    value="Intern">
+
+                    Intern
+                </div>
+
+                <div>
+                    <input
+                    type="radio"
+                    formControlName="userType"
+                    value="Mentor">
+
+                    Mentor
+                </div>
+
+                </div>
+                
+            </form>
+        </div>
     </div>
-    <br>
-    <div>
-        <label>Password</label>
-        <input type="password" formControlName="password">
-    </div>
-    <br>
-    <button type="submit">Login</button>
-    
-</form>
+</div>

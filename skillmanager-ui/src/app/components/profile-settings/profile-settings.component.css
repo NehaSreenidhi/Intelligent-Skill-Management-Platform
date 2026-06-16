@@ -1,0 +1,21 @@
+.profile-section{
+    margin-top:40px;
+}
+
+.profile-table{
+    width:60%;
+}
+
+.profile-table td{
+    padding:10px;
+}
+
+.save-btn{
+    width:50%;
+    background:linear-gradient(
+        90deg,
+        #003366,
+        #7c9ec3
+    );
+    color:white;
+}

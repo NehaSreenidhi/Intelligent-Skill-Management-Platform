@@ -1,0 +1,164 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+
+    <a class="navbar-brand fw-bold" routerLink="/">
+      Skill Manager
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNav">
+
+      <ul class="navbar-nav me-3">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/">Home</a>
+        </li>
+      </ul>
+
+      <button
+        class="btn btn-outline-light me-2"
+        routerLink="/login">
+        Login
+      </button>
+
+      <button
+        class="btn btn-light"
+        routerLink="/register">
+        Register
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+
+      <div class="col-lg-6 mb-4">
+        <h1 class="hero-title">
+          Intelligent Skill Management Platform
+        </h1>
+
+        <p class="hero-description">
+          Track intern skills, monitor learning consistency,
+          visualize progress through heatmaps and graphs,
+          and help mentors assign tasks efficiently using
+          skill-based search.
+        </p>
+
+        <div class="mt-4">
+          <button
+            class="btn btn-primary btn-lg me-3"
+            routerLink="/register">
+            Get Started
+          </button>
+
+          <button
+            class="btn btn-outline-primary btn-lg"
+            routerLink="/login">
+            Login
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center">
+        <img
+          src="images/landing.png"
+          alt="Skill Management"
+          class="hero-image">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-section">
+  <div class="container">
+
+    <h2 class="text-center mb-5 fw-bold">
+      Platform Features
+    </h2>
+
+    <div class="row">
+
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <h4>Skill Tracking</h4>
+          <p>
+            Interns can add and update skills with
+            Beginner, Intermediate and Advanced levels.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <h4>Learning Analytics</h4>
+          <p>
+            Visualize consistency using activity heatmaps
+            and monitor learning growth over time.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <h4>Smart Search</h4>
+          <p>
+            Mentors can quickly search interns by skills
+            and allocate tasks efficiently.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="container text-center">
+
+    <h2 class="fw-bold mb-3">
+      Why This Platform?
+    </h2>
+
+    <p class="about-text">
+      Managing intern progress manually can be difficult.
+      This platform provides a centralized system to track
+      learning activities, monitor skill development and
+      help mentors make better decisions.
+    </p>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container text-center">
+
+    <h5>Intelligent Skill Management Platform</h5>
+
+    <p>
+      Internship Project using Angular, Spring Boot,
+      MongoDB and JWT Authentication.
+    </p>
+
+    <small>
+      © 2026 All Rights Reserved
+    </small>
+
+  </div>
+</footer>

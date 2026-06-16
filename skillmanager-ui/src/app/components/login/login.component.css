@@ -1,0 +1,166 @@
+/* Full Page */
+
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Center Container */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Animated Border */
+
+.gradient-border {
+    --borderWidth: 4px;
+    position: relative;
+    border-radius: 12px;
+    padding: var(--borderWidth);
+    width: 420px;
+}
+
+.gradient-border::after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    width: calc(100% + var(--borderWidth) * 2);
+    height: calc(100% + var(--borderWidth) * 2);
+
+    background: linear-gradient(
+        60deg,
+        #f79533,
+        #f37055,
+        #ef4e7b,
+        #a166ab,
+        #5073b8,
+        #1098ad,
+        #07b39b,
+        #6fba82
+    );
+
+    background-size: 300% 300%;
+    border-radius: 16px;
+    z-index: -1;
+
+    animation: animatedgradient 4s ease infinite;
+}
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Card */
+
+.login-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+
+h2 {
+    text-align: center;
+    color: #003366;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Labels */
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Inputs */
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    outline: none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #003366;
+}
+
+/* Radio Buttons */
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+.radio-group {
+    margin-bottom: 20px;
+}
+
+/* Button */
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #003366,
+        #7c9ec3
+    );
+
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+/* Links */
+
+.auth-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-link a {
+    color: #003366;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}

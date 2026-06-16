@@ -1,6 +1,7 @@
 package com.platform.skillmanager.controller;
 
 import com.platform.skillmanager.dto.LoginRequest;
+import com.platform.skillmanager.dto.ResetPasswordRequest;
 import com.platform.skillmanager.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,14 @@ public class AuthController {
     public Object login(@RequestBody LoginRequest request){
         System.out.println("==========LOGIN API HIT==========");
         return authService.login(request);
+    }
+
+    @PostMapping("/reset-password")
+    public String resetPassword(
+            @RequestBody ResetPasswordRequest request){
+
+        authService.resetPassword(request);
+
+        return "Password reset successful";
     }
 }

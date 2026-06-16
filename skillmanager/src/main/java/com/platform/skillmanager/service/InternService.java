@@ -80,9 +80,10 @@ public class InternService {
         return internRepository.save(intern);
     }
 
-    public Intern updateProfile(UpdateProfileRequest request){
-        Intern intern = internRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("Intern not found."));
+    public Intern updateProfile(String email, UpdateProfileRequest request){
+
+        Intern intern = internRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Intern not found"));
 
         intern.setPhone(request.getPhone());
         intern.setGithub(request.getGithub());

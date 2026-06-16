@@ -1,0 +1,93 @@
+<div class="container profile-section">
+
+  <h3>Profile Links</h3>
+
+  <br>
+
+  <form (ngSubmit)="saveProfile()">
+
+    <table class="profile-table">
+
+      <tr>
+        <td>
+          <label>Mobile Number</label>
+        </td>
+
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="profile.phone"
+            name="phone">
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>LinkedIn Profile</label>
+        </td>
+
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="profile.linkedin"
+            name="linkedin">
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Github Profile</label>
+        </td>
+
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="profile.github"
+            name="github">
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Leetcode Profile</label>
+        </td>
+
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="profile.leetcode"
+            name="leetcode">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="text-center">
+
+          <button
+            type="submit"
+            class="btn save-btn">
+
+            Save Details
+
+          </button>
+
+        </td>
+      </tr>
+
+    </table>
+
+  </form>
+
+  <div
+    *ngIf="successMessage"
+    class="alert alert-success mt-3">
+
+    {{successMessage}}
+
+  </div>
+
+</div>

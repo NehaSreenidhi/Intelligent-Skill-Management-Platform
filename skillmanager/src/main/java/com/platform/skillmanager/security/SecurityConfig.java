@@ -27,11 +27,12 @@ public class SecurityConfig {
             throws Exception {
 
         http
-            .cors(cors -> {})
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                                 "/auth/login",
+                                "/auth/reset-password",
                                 "/intern/register",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",

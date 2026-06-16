@@ -2,6 +2,7 @@ package com.platform.skillmanager.service;
 
 import com.platform.skillmanager.dto.JwtResponse;
 import com.platform.skillmanager.dto.LoginRequest;
+import com.platform.skillmanager.dto.ResetPasswordRequest;
 import com.platform.skillmanager.jwt.JwtUtil;
 import com.platform.skillmanager.model.Intern;
 import com.platform.skillmanager.model.Mentor;
@@ -49,5 +50,46 @@ public class AuthService {
             );
         }
         throw new RuntimeException("Invalid user type");
+    }
+
+    public void resetPassword(
+            ResetPasswordRequest request){
+
+        String encodedPassword = passwordEncoder.encode(request.getNewPassword());
+
+        if(request.getUserType()
+                .equalsIgnoreCase("Intern")){
+
+            Intern intern = internRepository
+                            .findByEmail(
+                                    request.getEmail()
+                            )
+                            .orElseThrow(
+                                    () -> new RuntimeException(
+                                            "Intern not found"
+                                    )
+                            );
+
+            intern.setPassword(encodedPassword);
+
+            internRepository.save(intern);
+        }
+
+        else{
+
+            Mentor mentor = mentorRepository
+                            .findByEmail(
+                                    request.getEmail()
+                            )
+                            .orElseThrow(
+                                    () -> new RuntimeException(
+                                            "Mentor not found"
+                                    )
+                            );
+
+            mentor.setPassword(encodedPassword);
+
+            mentorRepository.save(mentor);
+        }
     }
 }

@@ -6,6 +6,7 @@ import com.platform.skillmanager.model.Intern;
 import com.platform.skillmanager.service.InternService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Intern APIs")
@@ -41,7 +42,13 @@ public class InternController {
     }
 
     @PutMapping("/profile-settings")
-    public Intern updateProfile(@RequestBody UpdateProfileRequest request){
-        return internService.updateProfile(request);
+    public Intern updateProfile(@RequestBody UpdateProfileRequest request, Authentication authentication){
+
+        String email = authentication.getName();
+
+
+        System.out.println("PROFILE SETTINGS HIT");
+        //System.out.println(request.getEmail());
+        return internService.updateProfile(email, request);
     }
 }

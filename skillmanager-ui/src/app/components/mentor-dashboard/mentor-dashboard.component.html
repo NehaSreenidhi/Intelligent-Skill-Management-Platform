@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <h2>Interns List</h2>
+    <div class="row">
+        <div
+            class="col-md-4"
+            *ngFor="let intern of interns">
+
+            <div class="card mb-4 intern-card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{intern.name}}
+                    </h5>
+                    <p>
+                        <strong>Email:</strong>
+                        {{intern.email}}
+                    </p>
+                    <button
+                        class="btn profile-btn"
+                        [routerLink]="['/intern-profile', intern.email]">
+                        Go To Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
