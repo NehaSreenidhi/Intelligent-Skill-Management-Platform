@@ -1,7 +1,244 @@
-<h2>Dashboard</h2>
+<nav
+  class="navbar navbar-expand-lg"
+  style="background: linear-gradient(90deg,#003366,#7c9ec3)">
 
-<p>Login Successful!</p>
+  <div class="container-fluid">
+    <a class="navbar-brand text-white">
+      Hi, {{name}}!
+    </a>
+    <div class="dropdown">
+      <button
+        class="btn btn-light dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown">
 
-<div>
-    <a href="/profile-settings">Settings</a>
+        <i class="bi bi-person"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li>
+          <a
+            class="dropdown-item"
+            (click)="openAddSkillModal()">
+            Add Skill
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="dropdown-item"
+            (click)="openModifySkillModal()">
+            Modify Skill
+          </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <a
+            class="dropdown-item"
+            [routerLink]="['/intern-profile', email]">
+            My Profile
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="dropdown-item"
+            routerLink="/profile-settings">
+            Settings
+          </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <a
+            class="dropdown-item text-danger"
+            (click)="logout()">
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+    <h3>My Skills</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let skill of skills">
+                <td>{{skill.skillName}}</td>
+                <td>{{skill.skillLevel}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div
+  *ngIf="showAddModal"
+  class="modal d-block"
+  tabindex="-1">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5 class="modal-title">
+          Add Skill
+        </h5>
+
+        <button
+          class="btn-close"
+          (click)="closeAddSkillModal()">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <form
+          [formGroup]="addSkillForm"
+          (ngSubmit)="addSkill()">
+
+          <div class="mb-3">
+
+            <label>Skill Name</label>
+
+            <input
+              class="form-control"
+              formControlName="skillName">
+
+          </div>
+
+          <div class="mb-3">
+
+            <label>Skill Level</label>
+
+            <select
+              class="form-select"
+              formControlName="skillLevel">
+
+              <option value="Beginner">
+                Beginner
+              </option>
+
+              <option value="Intermediate">
+                Intermediate
+              </option>
+
+              <option value="Advanced">
+                Advanced
+              </option>
+
+            </select>
+
+          </div>
+
+          <button
+            class="btn w-100"
+            style="background:linear-gradient(90deg,#003366,#7c9ec3);color:white;">
+            Add Skill
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+*ngIf="showModifyModal"
+class="modal d-block"
+tabindex="-1">
+
+<div class="modal-dialog">
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h5 class="modal-title">
+        Modify Skill
+      </h5>
+
+      <button
+        class="btn-close"
+        (click)="closeModifySkillModal()">
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <form
+        [formGroup]="modifySkillForm"
+        (ngSubmit)="modifySkill()">
+
+        <div class="mb-3">
+
+          <label>Select Skill</label>
+
+          <select
+            class="form-select"
+            formControlName="existingSkill">
+
+            <option
+              *ngFor="let skill of skills"
+              [value]="skill.skillName">
+
+              {{skill.skillName}} -
+              {{skill.skillLevel}}
+
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="mb-3">
+
+          <label>New Skill Level</label>
+
+          <select
+            class="form-select"
+            formControlName="newSkillLevel">
+
+            <option value="Beginner">
+              Beginner
+            </option>
+
+            <option value="Intermediate">
+              Intermediate
+            </option>
+
+            <option value="Advanced">
+              Advanced
+            </option>
+
+          </select>
+
+        </div>
+
+        <button
+          class="btn w-100"
+          style="background:linear-gradient(90deg,#003366,#7c9ec3);color:white;">
+
+          Modify Skill
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
 </div>

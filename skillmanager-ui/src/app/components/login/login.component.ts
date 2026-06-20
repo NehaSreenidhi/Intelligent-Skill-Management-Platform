@@ -39,6 +39,10 @@ export class LoginComponent {
             "userType",
             loginData.userType || "Intern"
           );
+          localStorage.setItem(
+            "email",
+            this.loginForm.value.email || ''
+          );
           console.log('Login Success');
           console.log(response);
           if(loginData.userType === 'Mentor')

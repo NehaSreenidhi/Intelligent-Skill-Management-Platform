@@ -14,4 +14,25 @@ export class InternProfileService {
       data
     );
   }
+
+  getProfile(email:string){
+    return this.http.get(
+      `http://localhost:8080/intern/profile/${email}`
+    );
+  }
+
+  addSkill(data:any){
+    return this.http.post(
+      `http://localhost:8080/intern/add-skill`,
+      data
+    );
+  }
+
+  updateSkill(data:any){
+    return this.http.put(
+      `http://localhost:8080/intern/update-skill`,
+      data
+    );
+  }
+
 }
