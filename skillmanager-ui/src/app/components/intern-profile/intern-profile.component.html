@@ -1,24 +1,185 @@
-<h4 class="mt-4">Skills</h4>
+<div class="card shadow-sm mb-4">
 
-<table class="table table-bordered">
+    <div class="card-body">
 
-    <thead>
+        <div class="d-flex align-items-center">
+
+            <div
+                class="rounded-circle text-white d-flex justify-content-center align-items-center"
+                style="
+                    width:70px;
+                    height:70px;
+                    font-size:28px;
+                    font-weight:bold;
+                    background:linear-gradient(90deg,#003366,#7c9ec3);
+                ">
+
+                {{intern.name.charAt(0)}}
+
+            </div>
+
+            <div class="ms-4">
+
+                <h4 class="mb-1">
+                    {{intern.name}}
+                </h4>
+
+                <p class="text-muted mb-0">
+                    Intern
+                </p>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <p class="mb-1 text-muted">
+                    <i class="bi bi-envelope"></i>
+                    Email
+                </p>
+
+                <strong>{{intern.email}}</strong>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <p class="mb-1 text-muted">
+                    <i class="bi bi-linkedin"></i>
+                    LinkedIn
+                </p>
+
+                <a
+                    [href]="intern.linkedin"
+                    target="_blank">
+
+                    View Profile
+
+                </a>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <p class="mb-1 text-muted">
+                    <i class="bi bi-github"></i>
+                    GitHub
+                </p>
+
+                <a
+                    [href]="intern.github"
+                    target="_blank">
+
+                    View Repository
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- </div> -->
+
+<h3 class="mb-3">
+    Skills Overview
+</h3>
+
+
+<div class="row mb-4 justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body">
+
+                <h5 class="text-center mb-3">
+                    Skill Distribution
+                </h5>
+
+                <div class="chart-container">
+
+                    <canvas id="skillsChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<h4 class="mb-3">
+    My Skills
+</h4>
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<table class="table table-hover align-middle">
+
+    <thead class="table-light">
+
         <tr>
-            <th>Skill</th>
-            <th>Level</th>
+
+            <th>Skill Name</th>
+
+            <th>Proficiency</th>
+
         </tr>
+
     </thead>
 
     <tbody>
 
         <tr *ngFor="let skill of intern.skills">
 
-            <td>{{skill.skillName}}</td>
+            <td>
 
-            <td>{{skill.skillLevel}}</td>
+                {{skill.skillName}}
+
+            </td>
+
+            <td>
+
+                <span
+                class="badge"
+
+                [ngClass]="{
+
+                'bg-success': skill.skillLevel=='ADVANCED',
+
+                'bg-info': skill.skillLevel=='INTERMEDIATE',
+
+                'bg-warning text-dark': skill.skillLevel=='BEGINNER'
+
+                }">
+
+                {{skill.skillLevel}}
+
+                </span>
+
+            </td>
 
         </tr>
 
     </tbody>
 
 </table>
+
+</div>
+
+</div>

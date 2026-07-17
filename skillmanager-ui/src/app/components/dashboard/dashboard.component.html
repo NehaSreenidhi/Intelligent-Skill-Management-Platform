@@ -4,7 +4,7 @@
 
   <div class="container-fluid">
     <a class="navbar-brand text-white">
-      Hi, {{name}}!
+      Welcome back, {{name}}!
     </a>
     <div class="dropdown">
       <button
@@ -62,22 +62,141 @@
 </nav>
 
 <div class="container mt-4">
-    <h3>My Skills</h3>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Skill</th>
-                <th>Level</th>
-            </tr>
-        </thead>
+<div class="row g-3 mb-4">
 
-        <tbody>
-            <tr *ngFor="let skill of skills">
-                <td>{{skill.skillName}}</td>
-                <td>{{skill.skillLevel}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body text-center">
+
+                <h6>Total Skills</h6>
+
+                <h2>{{skills.length}}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body text-center">
+
+                <h6>Advanced</h6>
+
+                <h2>{{advancedCount}}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body text-center">
+
+                <h6>Intermediate</h6>
+
+                <h2>{{intermediateCount}}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card shadow-sm border-0">
+
+            <div class="card-body text-center">
+
+                <h6>Beginner</h6>
+
+                <h2>{{beginnerCount}}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<div class="container mt-4">
+<div class="card shadow-sm border-0">
+
+    <div class="card-body">
+
+        <h4 class="mb-4">
+
+            <i class="bi bi-code-slash"></i>
+
+            My Skills
+
+        </h4>
+
+        <div class="row">
+
+            <div
+                class="col-md-6 mb-4"
+                *ngFor="let skill of skills">
+
+                <div class="border rounded-4 p-3 h-100">
+
+                    <div class="d-flex justify-content-between">
+
+                        <strong>
+
+                            {{skill.skillName}}
+
+                        </strong>
+
+                        <span
+                            class="badge"
+
+                            [style.backgroundColor]="
+                            getSkillColor(skill.skillLevel)">
+
+                            {{skill.skillLevel}}
+
+                        </span>
+
+                    </div>
+
+                    <div class="progress mt-3">
+
+                        <div
+
+                            class="progress-bar"
+
+                            [style.width.%]="
+                            getSkillPercentage(skill.skillLevel)"
+
+                            [style.backgroundColor]="
+                            getSkillColor(skill.skillLevel)">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 </div>
 
 <div

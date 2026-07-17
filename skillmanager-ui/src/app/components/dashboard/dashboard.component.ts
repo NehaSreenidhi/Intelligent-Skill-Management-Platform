@@ -48,6 +48,24 @@ export class DashboardComponent {
       });
   }
 
+  get advancedCount(): number {
+    return this.skills.filter(
+      s => s.skillLevel === 'ADVANCED'
+    ).length;
+  }
+
+  get intermediateCount(): number {
+    return this.skills.filter(
+      s => s.skillLevel === 'INTERMEDIATE'
+    ).length;
+  }
+
+  get beginnerCount(): number {
+    return this.skills.filter(
+      s => s.skillLevel === 'BEGINNER'
+    ).length;
+  }
+
   openAddSkillModal(){
     this.showAddModal = true;
   }
@@ -62,6 +80,40 @@ export class DashboardComponent {
 
   closeModifySkillModal(){
     this.showModifyModal = false;
+  }
+
+  getSkillPercentage(level: string): number {
+    switch(level){
+
+      case 'BEGINNER':
+        return 33;
+
+      case 'INTERMEDIATE':
+        return 66;
+
+      case 'ADVANCED':
+        return 100;
+
+      default:
+        return 0;
+    }
+  }
+
+  getSkillColor(level: string): string {
+    switch(level){
+
+      case 'BEGINNER':
+        return '#dc3545';   // red
+
+      case 'INTERMEDIATE':
+        return '#0dcaf0';   // blue
+
+      case 'ADVANCED':
+        return '#198754';   // green
+
+      default:
+        return '#6c757d';   // gray
+    }
   }
 
   addSkillForm = new FormGroup({

@@ -26,28 +26,27 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public Object login(LoginRequest request){
+    public Object login(LoginRequest request) {
         System.out.println("User Type = " + request.getUserType());
         System.out.println("Email = " + request.getEmail());
-        if(request.getUserType().equalsIgnoreCase("Intern")){
+
+        if (request.getUserType().equalsIgnoreCase("Intern")) {
             Intern intern = internRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new RuntimeException("Intern not found"));
-            if(!passwordEncoder.matches(request.getPassword(), intern.getPassword())) {
+            if (!passwordEncoder.matches(request.getPassword(), intern.getPassword())) {
                 throw new RuntimeException("Invalid credentials.");
             }
             String token = jwtUtil.generateToken(intern.getEmail());
             return new JwtResponse(token);
         }
-
-        else if(request.getUserType().equalsIgnoreCase("Mentor")){
+        else if (request.getUserType().equalsIgnoreCase("Mentor")) {
             Mentor mentor = mentorRepository.findByEmail(request.getEmail())
                     .orElseThrow(() -> new RuntimeException("Mentor not found."));
-            if(!mentor.getPassword().equals(request.getPassword())){
+
+            if (!passwordEncoder.matches(request.getPassword(), mentor.getPassword())) {
                 throw new RuntimeException("Invalid credentials.");
             }
-            return new JwtResponse(
-                    jwtUtil.generateToken(mentor.getEmail())
-            );
+            return new JwtResponse(jwtUtil.generateToken(mentor.getEmail()));
         }
         throw new RuntimeException("Invalid user type");
     }
