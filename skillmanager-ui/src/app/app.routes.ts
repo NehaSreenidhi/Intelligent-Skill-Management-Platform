@@ -7,6 +7,7 @@ import { ProfileSettingsComponent } from './components/profile-settings/profile-
 import { MentorDashboardComponent } from './components/mentor-dashboard/mentor-dashboard.component';
 import { InternProfileComponent } from './components/intern-profile/intern-profile.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { SearchInternsComponent } from './components/search-interns/search-interns.component';
 
 export const routes: Routes = [
     {path:'', component: LandingComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path:'profile-settings', component: ProfileSettingsComponent},
     {path:'mentor-dashboard', component: MentorDashboardComponent},
     {path:'intern-profile/:email', component: InternProfileComponent},
-    {path:'reset-password', component: ResetPasswordComponent}
+    {path:'reset-password', component: ResetPasswordComponent},
+    {path: 'search-interns', component: SearchInternsComponent}
 ];

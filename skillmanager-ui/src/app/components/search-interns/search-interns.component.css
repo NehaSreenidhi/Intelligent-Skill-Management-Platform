@@ -1,0 +1,39 @@
+.card{
+
+    border-radius:18px;
+
+}
+
+.form-control{
+
+    height:50px;
+
+}
+
+.search-btn{
+    min-width:120px;
+}
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 12px;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    transition:.3s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.alert{
+
+    border-radius:12px;
+
+}
