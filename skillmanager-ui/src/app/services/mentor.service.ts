@@ -23,4 +23,13 @@ export class MentorService {
       `${this.apiUrl}/profile/${email}`
     );
   }
+  
+  searchInterns(query: string): Observable<any[]> {
+    return this.http.post<any[]>(
+      `${this.apiUrl}/search-ai`,
+      {
+        query: query
+      }
+    );
+  }
 }

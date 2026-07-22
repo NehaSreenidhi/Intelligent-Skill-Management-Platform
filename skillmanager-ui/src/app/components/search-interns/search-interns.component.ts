@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { MentorService } from '../../services/mentor.service';
 
 @Component({
   selector: 'app-search-interns',
@@ -13,19 +14,34 @@ import { Router, RouterLink } from '@angular/router';
 export class SearchInternsComponent {
   query = '';
   searched = false;
+  loading = false;
   results: any[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private mentorService: MentorService
   ){}
 
-  searchInterns(){
-    this.searched = true;
-    console.log("Searched query : " , this.query);
+  searchInterns() {
+    if (!this.query.trim()) {
+      return;
+    }
 
-    // Next Step:
-    // Call Spring Boot
-    // this.mentorService.searchInterns(this.query)
+    this.loading = true;
+
+    this.mentorService.searchInterns(this.query)
+      .subscribe(
+        (response: any[]) => {
+          console.log(response);
+          this.results = response;
+          this.searched = true;
+          this.loading = false;
+        },
+        (error) => {
+          console.error(error);
+          this.loading = false;
+        }
+      );
   }
 
   logout(){

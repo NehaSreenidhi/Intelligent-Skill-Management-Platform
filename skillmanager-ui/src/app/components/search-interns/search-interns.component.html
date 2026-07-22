@@ -61,87 +61,58 @@
 
 
 <div class="container mt-5">
-
     <div class="card shadow border-0">
-
         <div class="card-body p-4">
-
             <h2 class="text-center">
-
                 🤖 AI Intern Search
-
             </h2>
-
             <p class="text-center text-muted">
-
                 Describe the intern you're looking for.
-
             </p>
-
             <form (ngSubmit)="searchInterns()">
-
                 <div class="input-group mt-4">
-
                     <input
-
                         type="text"
-
                         class="form-control"
-
                         placeholder="Example: Python developer with Flask and MongoDB experience"
-
                         [(ngModel)]="query"
-
                         name="query"
-
                         required>
 
                     <button
-
                         class="btn search-btn"
-
                         type="submit"
-
                         style="background:linear-gradient(90deg,#003366,#7c9ec3);color:white;">
-
                         <i class="bi bi-search"></i>
-
                         Search
 
                     </button>
-
                 </div>
-
             </form>
-
         </div>
-
     </div>
-
 </div>
 
+<div *ngIf="loading" class="text-center mt-4">
+    <div class="spinner-border text-primary"></div>
+    <p class="mt-2">Searching interns...</p>
+</div>
 
 <div
     class="container mt-5"
     *ngIf="searched">
 
     <h4 class="mb-4">
-
         Search Results
-
         <span class="badge bg-primary">
-
             {{results.length}}
-
         </span>
 
     </h4>
 
     <div
         class="alert alert-warning"
-
         *ngIf="results.length==0">
-
         🤖 No matching interns found.
 
     </div>
@@ -151,65 +122,44 @@
         <div
 
             class="col-lg-4 col-md-6 mb-4"
-
             *ngFor="let intern of results">
-
             <div class="card shadow-sm h-100">
-
                 <div class="card-body">
-
                     <h5>
-
                         {{intern.name}}
-
                     </h5>
-
                     <p class="text-muted">
-
                         <i class="bi bi-envelope-fill me-2"></i>
-
                         {{intern.email}}
-
                     </p>
-
                     <hr>
-
+                    <p class="mb-2">
+                        <strong>Matched Skill:</strong>
+                        <span class="badge bg-success">
+                            {{ intern.matchedSkill }}
+                        </span>
+                    </p>
                     <h6>
-
-                        Matching Skills
-
+                        {{ intern.name }} : Skills
                     </h6>
 
-                    <div
-                        *ngFor="let skill of intern.skills">
-
-                        <span
-                            class="badge bg-success me-2 mb-2">
-
-                            {{skill.skillName}}
-
-                        </span>
-
-                    </div>
+                    <ul class="list-unstyled mb-0">
+                        <li *ngFor="let skill of intern.skills">
+                            {{ skill.skillName }}
+                            <small class="text-muted">
+                                ({{ skill.skillLevel }})
+                            </small>
+                        </li>
+                    </ul>
 
                     <button
-
                         class="btn mt-3 w-100"
-
                         style="background:linear-gradient(90deg,#003366,#7c9ec3);color:white;"
-
                         [routerLink]="['/intern-profile',intern.email]">
-
                         View Profile
-
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>

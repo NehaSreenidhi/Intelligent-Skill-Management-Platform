@@ -5,8 +5,6 @@ from services.search_service import search_interns
 
 app = Flask(__name__)
 
-populate_faiss()
-
 @app.route("/")
 def home():
     return "SkillManager AI Service Running"
@@ -20,4 +18,5 @@ def search():
     return jsonify(results)
 
 if __name__ == "__main__":
+    populate_faiss()
     app.run(debug=True, port=5001)
