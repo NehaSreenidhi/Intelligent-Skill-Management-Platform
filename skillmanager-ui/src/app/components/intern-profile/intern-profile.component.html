@@ -1,7 +1,12 @@
+<!-- =========================
+     INTERN PROFILE
+========================= -->
+
 <div class="card shadow-sm mb-4">
 
     <div class="card-body">
 
+        <!-- Profile Header -->
         <div class="d-flex align-items-center">
 
             <div
@@ -14,14 +19,14 @@
                     background:linear-gradient(90deg,#003366,#7c9ec3);
                 ">
 
-                {{intern.name.charAt(0)}}
+                {{ intern?.name?.charAt(0) }}
 
             </div>
 
             <div class="ms-4">
 
                 <h4 class="mb-1">
-                    {{intern.name}}
+                    {{ intern?.name }}
                 </h4>
 
                 <p class="text-muted mb-0">
@@ -34,6 +39,7 @@
 
         <hr>
 
+        <!-- Contact Information -->
         <div class="row">
 
             <div class="col-md-4">
@@ -43,7 +49,9 @@
                     Email
                 </p>
 
-                <strong>{{intern.email}}</strong>
+                <strong>
+                    {{ intern?.email }}
+                </strong>
 
             </div>
 
@@ -55,8 +63,9 @@
                 </p>
 
                 <a
-                    [href]="intern.linkedin"
-                    target="_blank">
+                    [href]="intern?.linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer">
 
                     View Profile
 
@@ -72,8 +81,9 @@
                 </p>
 
                 <a
-                    [href]="intern.github"
-                    target="_blank">
+                    [href]="intern?.github"
+                    target="_blank"
+                    rel="noopener noreferrer">
 
                     View Repository
 
@@ -87,12 +97,69 @@
 
 </div>
 
-<!-- </div> -->
+
+<!-- =========================
+     SKILLS OVERVIEW
+========================= -->
 
 <h3 class="mb-3">
     Skills Overview
 </h3>
 
+
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0">Contribution Activity</h5>
+      <span class="text-muted">{{ currentYear }}</span>
+    </div>
+
+    <div class="heatmap-container">
+      <div class="heatmap-wrapper">
+
+        <div class="months-container" [style.grid-template-columns]="gridColumnTemplate">
+          <div class="month-label"
+               *ngFor="let m of monthLabels"
+               [style.grid-column-start]="m.colStart">
+            {{ m.name }}
+          </div>
+        </div>
+
+        <div class="heatmap-body">
+          <div class="weekday-labels">
+            <span *ngFor="let w of weekdayLabels">{{ w }}</span>
+          </div>
+
+          <div class="calendar-grid" [style.grid-template-columns]="gridColumnTemplate">
+            <div *ngFor="let cell of dayCells"
+                class="activity-day"
+                [ngClass]="cell.isSpacer ? 'spacer-day' : (cell.isEmpty ? 'empty-day' : 'level-' + cell.level)"
+                [attr.data-date]="(cell.isEmpty || cell.isSpacer) ? null : cell.dateStr"
+                [attr.data-count]="(cell.isEmpty || cell.isSpacer) ? null : cell.count">
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center mt-3">
+      <span class="text-muted me-2">Less</span>
+      <span class="legend-box level-0"></span>
+      <span class="legend-box level-1"></span>
+      <span class="legend-box level-2"></span>
+      <span class="legend-box level-3"></span>
+      <span class="text-muted ms-2">More</span>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =========================
+     SKILL DISTRIBUTION
+========================= -->
 
 <div class="row mb-4 justify-content-center">
 
@@ -121,65 +188,73 @@
 </div>
 
 
+<!-- =========================
+     MY SKILLS
+========================= -->
+
 <h4 class="mb-3">
     My Skills
 </h4>
 
 <div class="card shadow-sm">
 
-<div class="card-body">
+    <div class="card-body">
 
-<table class="table table-hover align-middle">
+        <table class="table table-hover align-middle">
 
-    <thead class="table-light">
+            <thead class="table-light">
 
-        <tr>
+                <tr>
 
-            <th>Skill Name</th>
+                    <th>
+                        Skill Name
+                    </th>
 
-            <th>Proficiency</th>
+                    <th>
+                        Proficiency
+                    </th>
 
-        </tr>
+                </tr>
 
-    </thead>
+            </thead>
 
-    <tbody>
+            <tbody>
 
-        <tr *ngFor="let skill of intern.skills">
+                <tr *ngFor="let skill of intern?.skills">
 
-            <td>
+                    <td>
+                        {{ skill.skillName }}
+                    </td>
 
-                {{skill.skillName}}
+                    <td>
 
-            </td>
+                        <span
+                            class="badge"
+                            [ngClass]="{
 
-            <td>
+                                'bg-success':
+                                    skill.skillLevel == 'ADVANCED',
 
-                <span
-                class="badge"
+                                'bg-info':
+                                    skill.skillLevel == 'INTERMEDIATE',
 
-                [ngClass]="{
+                                'bg-warning text-dark':
+                                    skill.skillLevel == 'BEGINNER'
 
-                'bg-success': skill.skillLevel=='ADVANCED',
+                            }">
 
-                'bg-info': skill.skillLevel=='INTERMEDIATE',
+                            {{ skill.skillLevel }}
 
-                'bg-warning text-dark': skill.skillLevel=='BEGINNER'
+                        </span>
 
-                }">
+                    </td>
 
-                {{skill.skillLevel}}
+                </tr>
 
-                </span>
+            </tbody>
 
-            </td>
+        </table>
 
-        </tr>
-
-    </tbody>
-
-</table>
-
-</div>
+    </div>
 
 </div>

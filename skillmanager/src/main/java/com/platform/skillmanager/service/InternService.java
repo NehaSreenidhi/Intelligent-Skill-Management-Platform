@@ -51,9 +51,7 @@ public class InternService {
         skill.setSkillName(request.getSkillName());
 
         skill.setSkillLevel(SkillLevel.valueOf(request.getSkillLevel().toUpperCase()));
-
         intern.getSkills().add(skill);
-
         intern.getActivity().put(LocalDate.now().toString(), "add");
 
         return internRepository.save(intern);
@@ -76,6 +74,7 @@ public class InternService {
         if(!found){
             throw new RuntimeException("Skill not found");
         }
+
         intern.getActivity().put(LocalDate.now().toString(), "modify");
         return internRepository.save(intern);
     }
